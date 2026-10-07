@@ -1,0 +1,11 @@
+DirectoryIndex index.html
+Options -Indexes
+
+# Evita servir metadados do repositório na hospedagem Apache/LiteSpeed.
+<FilesMatch "^(README\.md|\.gitignore|\.gitattributes)$">
+    Require all denied
+</FilesMatch>
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule (^|/)\.git(?:/|$) - [F,L]
+</IfModule>
